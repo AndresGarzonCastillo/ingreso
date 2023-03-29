@@ -1,0 +1,48 @@
+const readline = require('readline');
+var rl = readline.createInterface(process.stdin, process.stdout);
+var util = require('util');
+var persona = {
+    nombres : '',
+    apellidos : '',
+    ocupacion : '',
+    estado_civil : '',
+    observaciones : ''
+};
+rl.question('Ingresa tus nombres: ', (resp_nombre)=>{
+    persona.nombres = resp_nombre;
+    rl.question('Ingresa tus apellidos: ', (resp_apellido)=>{
+        persona.apellidos = resp_apellido;
+        rl.question('¿Cual es tu ocupacion? ', (resp_ocupacion)=>{
+            persona.ocupacion = resp_ocupacion;
+            rl.question('¿Cual es tu estado civil? ', (resp_estadoc)=>{
+                persona.estado_civil = resp_estadoc;
+                rl.question('Observaciones: ', (resp_observaciones)=>{
+                    persona.observaciones = resp_observaciones;
+                })
+            })
+        })
+    })
+})
+rl.on('line', (input)=>{
+    if(input.trim()==='salir'){
+        var datos = util.format('Nombres %s\n Apellidos %s\n Ocupacion %s\n Estado civil %s\n Observaciones %j', 
+        persona.nombres, persona.apellidos, persona.ocupacion, persona.estado_civil, persona.observaciones);
+        console.log(datos)
+        process.exit();
+    }
+    rl.question('Ingresa tus nombres: ', (resp_nombre)=>{
+        persona.nombres = resp_nombre;
+        rl.question('Ingresa tus apellidos: ', (resp_apellido)=>{
+            persona.apellidos = resp_apellido;
+            rl.question('¿Cual es tu ocupacion? ', (resp_ocupacion)=>{
+                persona.ocupacion = resp_ocupacion;
+                rl.question('¿Cual es tu estado civil? ', (resp_estadoc)=>{
+                    persona.estado_civil = resp_estadoc;
+                    rl.question('Observaciones: ', (resp_observaciones)=>{
+                        persona.observaciones = resp_observaciones;
+                    })
+                })
+            })
+        })
+    })
+});
